@@ -237,15 +237,17 @@ bind_rows(eva_rent, eva_subsidy, eva_income) |>
 
 ## Question #3: \[Mingzhe Li - House age and repair need\]
 
-How are percentages of older-housing and percentages of major-repair related across Toronto neighbourhoods, and how do these patterns vary with median household income?
+**Major question:** How are percentages of older-housing and percentages of major-repair related across Toronto neighbourhoods, and how do these patterns vary with median household income?
+
+**Link to our theme:** This question examines how housing repair needs vary across Toronto neighbourhoods with different income levels and shares of older dwellings.
 
 ## Q3: Variables & Approach
 
 **Variables used:**
 
--   pct_older_housing
--   pct_major_repairs
--   median_household_income
+-   pct_older_housing : Percentage of occupied private dwellings built in 1980 or earlier
+-   pct_major_repairs : Percentage of occupied private dwellings requiring major repairs
+-   median_household_income : Median total annual household income in 2020
 
 
 ## Q3: Visualization
