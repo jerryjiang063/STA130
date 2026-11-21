@@ -292,28 +292,6 @@ Insights for Q3:
 **Link to our theme:** This explores how income influences daily commuting patterns in Toronto, adding a transportation dimension to the group’s theme on living conditions.
 
 ## Q4: Variables & Approach
-
-\small
-
-*
-\small
-
-**Variables used:**
-
-- `median_household_income`: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
-
-- `pct_transit_commuters`: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
-
-- `majority_highrise`: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
-
-- `neighbourhood`: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
-
-**New variables/groups defined:**
-
-- `highrise_group`: Converts Yes/No into clearer group labels.
-
-- `income_10k`: Household income divided by 10,000 for easier interpretation of regression slopes.
-
 \small
 
 **Variables used:**
@@ -400,9 +378,6 @@ which:
 `[hat y_1]`: Predicted transit commuting percentage for majority high-rise neighborhoods,
 
 `[hat y_2]`: Predicted transit commuting percentage for other neighborhood.
-
-The plot displays household income in CAD thousands (\$k), while the regression equations use income in units of CAD $10,000.
-
 :::
 
 ::::
