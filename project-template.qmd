@@ -289,9 +289,6 @@ Insights for Q3:
 
 -   Higher median income tend to coincide with lower major-repair percentages.
 
-
-
-
 ## Question #4: \[Jerry - Income and Public Transit Commuting\]
 
 **Major question:** How does median household income relate to public transit commuting rates across Toronto neighbourhoods, and how does this relationship vary by majority high-rise status?
@@ -301,20 +298,24 @@ Insights for Q3:
 **Link to our theme:** This explores how income influences daily commuting patterns in Toronto, adding a transportation dimension to the group’s theme on living conditions.
 
 ## Q4: Variables & Approach
+
+\small
+
 **Variables used:**
-- [median_household_income]: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
 
-- [pct_transit_commuters]: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
+- `[median_household_income]`: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
 
-- [majority_highrise]: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
+- `[pct_transit_commuters]`: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
 
-- [neighbourhood]: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
+- `[majority_highrise]`: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
+
+- `[neighbourhood]`: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
 
 **New variables/groups defined:**
 
-- [highrise_group]: Converts Yes/No into clearer group labels.
+- `[highrise_group]`: Converts Yes/No into clearer group labels.
 
-- [income_10k]: Household income divided by 10,000 for easier interpretation of regression slopes.
+- `[income_10k]`: Household income divided by 10,000 for easier interpretation of regression slopes.
 
 ```{r q4-data}
 q4_data <- toronto |> 
@@ -330,11 +331,14 @@ q4_data <- toronto |>
   )
 ```
 
+\normalsize
+
 ## Q4: Visualization
+
 :::: {.columns}
 
-::: {.column width="62%"}
-```{r q4-plot, fig.width=6, fig.height=3, out.width="100%"}
+::: {.column width="64%"}
+```{r q4-plot, fig.width=6.2, fig.height=3.4, out.width="100%"}
 ggplot(q4_data, 
        aes(x = median_household_income,
            y = pct_transit_commuters,
@@ -347,31 +351,51 @@ ggplot(q4_data,
     x = "Median household income (CAD)",
     y = "Public transit commuters (%)",
     color = "Neighbourhood type") +
-   
+
   scale_x_continuous(labels = scales::label_dollar(scale = 0.001, 
                                                    suffix = "k")) +
   theme(legend.position = "bottom")
 ```
 :::
 
-::: {.column width="38%"}
-**Majority high-rise:**  
+::: {.column width="36%"}
+
+\small
+
+**Majority high-rise:**
+
 $$
 \hat{y_1} = 47.66 - 2.37x
 $$
 
-**Other neighborhoods:**  
+**Other neighborhoods:**
+
 $$
 \hat{y_2} = 37.99 - 1.46x
-$$  
+$$
+
+\scriptsize
+
+which:
+
+`[x]`: Median household income (in CAD $10,000),
+
+`[y]`: Observed percentage of public transit commuters,
+
+`[hat y_1]`: Predicted transit commuting percentage for majority high-rise neighborhoods,
+
+`[hat y_2]`: Predicted transit commuting percentage for other neighborhood.
+
 :::
+
 ::::
+
+\footnotesize
 
 **How to interpret data:** Each dots represents one data. The fitted line show the relationship between household income and transit commuting within each housing group.
 
-**How to write the linear regression line:** We need the tibble contains both intercept and slope for highrise and other neighborhoods model.
 
-```{r q4-tibble}
+```{r q4-tibble, include=FALSE}
 model_major_highrise <- lm(
   pct_transit_commuters ~ income_10k,
   data = filter(q4_data, majority_highrise == "Yes")
@@ -388,20 +412,7 @@ tibble(
 )
 ```
 
-Now, we can conclude the equations.  
-**Majority high-rise:**  
-$$
-\hat{y_1} = 47.66 - 2.37x
-$$
-
-**Other neighborhoods:**  
-$$
-\hat{y_2} = 37.99 - 1.46x
-$$  
-which:\[x\]:Median household income (in CAD \$10,000),\
-\[y\]:Observed percentage of public transit commuters,\
-\[hat y_1\]:Predicted transit commuting percentage for majority high-rise neighborhoods,\
-\[hat y_2\]:Predicted transit commuting percentage for other neighborhood.
+\normalsize
 
 ## Q4: Summary Table
 
@@ -421,12 +432,17 @@ kable(caption = "Comparison of highrise status",
       align = "lccc")
 ```
 
+\footnotesize
+
 Insights for Q4:  
+
 - *Negative association:* Both regression lines have negative slopes, showing that higher-income neighbourhoods tend to have lower public transit commuting rates.
 
 - *Group differences:* Majority high-rise neighbourhoods tend to have lower median household incomes ($76k vs. $88k) and higher transit commuting rates (28.3% vs. 24.2%).
 
 - *Slope comparison:* For the same $10k income difference, the predicted transit commuting rate decreases by 2.37 percentage points in majority high-rise neighbourhoods, compared with 1.46 in other neighbourhoods, a difference of 0.91 percentage points.
+
+\normalsize
 
 ## Overall Limitations
 
