@@ -133,9 +133,9 @@ q1_stats |>
                caption = "Income and renter share by region")
 ```
 
-Insights for Q1
+**Insights for Q1**
 
-Across `r nrow(q1_data)` Toronto neighbourhoods with complete data, the correlation between median household income and renter share is `r sprintf("%+.2f", q1_city_r)`, indicating a `r if (q1_city_r < 0) "negative" else if (q1_city_r > 0) "positive" else "zero"` linear association. Looking at each region separately, `r sum(q1_stats$r < 0)` of the four regions show negative correlations. The estimated slopes range from `r sprintf("%+.1f", min(q1_stats$slope))` to `r sprintf("%+.1f", max(q1_stats$slope))` percentage points in renter share for every \$10,000 increase in median household income. The largest slope in absolute terms is in `r q1_stats$region[which.max(abs(q1_stats$slope))]` (`r sprintf("%+.1f", q1_stats$slope[which.max(abs(q1_stats$slope))])` percentage points per \$10,000). These regional patterns offer the City a more detailed picture than a single city-wide figure, although differences in slopes have not been formally tested.
+Across Toronto neighbourhoods, median household income and renter share show a negative correlation. This pattern appears across all four regions, although the regression slopes differ, suggesting that the relationship is stronger in some regions than others. These findings highlight regional differences in how income relates to renting across Toronto.
 
 ## Question #2: Yuk Shing Pang - Rent and Housing Cost Burden
 
