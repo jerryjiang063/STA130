@@ -48,9 +48,9 @@ data <- read_csv("toronto_neighbourhoods_STA130.csv", show_col_types = FALSE)
 
 **Research Goal:** To see how neighbourhood income relates to renting, housing costs, housing condition, and transit use across Toronto, and whether these links differ between types of neighbourhoods.
 
-**Target Population:** All residents in the city of Toronto in 2021.
+**Target Population:** All neighbourhoods in the city of Toronto in 2021.
 
-**Audience:** Residents choosing where to live.
+**Audience:** Residents choosing where to live, City of Toronto Open Data Partners.
 
 ## Data Summary
 
@@ -167,12 +167,6 @@ Across Toronto neighbourhoods, median household income and renter share show a n
 
 -   `low_income_pct`: % of residents classified as having low income according to the after-tax Low-income Measure
 
-**Approach:**
-
--   Plot the response against each explanatory variable with a fitted line.
-
--   Use R squared to rank them by how much variation each explains alone.
-
 ## Q2: Visualization
 
 ```{r q2-plot, fig.width = 9, fig.height = 3.4, out.width = "100%", fig.cap = "Each point is a neighbourhood. y-axis: % of renters spending 30% or more of their income on shelter. Lighter points have more low-income residents."}
@@ -235,7 +229,7 @@ bind_rows(eva_rent, eva_subsidy, eva_income) |>
 
 
 
-## Question #3: \[Mingzhe Li - House age and repair need\]
+## Question #3: Mingzhe Li - House age and repair need
 
 **Major question:** How are percentages of older-housing and percentages of major-repair related across Toronto neighbourhoods, and how do these patterns vary with median household income?
 
@@ -289,11 +283,11 @@ Insights for Q3:
 
 -   Higher median income tend to coincide with lower major-repair percentages.
 
-## Question #4: \[Jerry - Income and Public Transit Commuting\]
+## Question #4: Jerry - Income and Public Transit Commuting
 
 **Major question:** How does median household income relate to public transit commuting rates across Toronto neighbourhoods, and how does this relationship vary by majority high-rise status?
 
-**Why it matters:** Understanding the preferences for commuting modes among different income groups—based on the types of communities they choose to reside in—offers a fresh perspective on the selection of residential environments for low-income populations.
+**Why it matters:** This analysis can help the City of Toronto identify lower-income neighbourhoods where public transit commuting is more common and assess where additional transit services may be needed.
 
 **Link to our theme:** This explores how income influences daily commuting patterns in Toronto, adding a transportation dimension to the group’s theme on living conditions.
 
@@ -301,21 +295,42 @@ Insights for Q3:
 
 \small
 
+*
+\small
+
 **Variables used:**
 
-- `[median_household_income]`: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
+- `median_household_income`: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
 
-- `[pct_transit_commuters]`: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
+- `pct_transit_commuters`: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
 
-- `[majority_highrise]`: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
+- `majority_highrise`: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
 
-- `[neighbourhood]`: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
+- `neighbourhood`: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
 
 **New variables/groups defined:**
 
-- `[highrise_group]`: Converts Yes/No into clearer group labels.
+- `highrise_group`: Converts Yes/No into clearer group labels.
 
-- `[income_10k]`: Household income divided by 10,000 for easier interpretation of regression slopes.
+- `income_10k`: Household income divided by 10,000 for easier interpretation of regression slopes.
+
+\small
+
+**Variables used:**
+
+- `median_household_income`: Median annual household income (CAD). This is a numerical variable and an explanatory variable (X).
+
+- `pct_transit_commuters`: Percentage of commuters using public transit. This is a numerical variable and a response variable (Y).
+
+- `majority_highrise`: Whether over 50% of dwellings are in buildings with five or more storeys. This is a categorical variable (Yes/No).
+
+- `neighbourhood`: Name of the Toronto neighbourhood. This is a categorical variable and an identifier.
+
+**New variables/groups defined:**
+
+- `highrise_group`: Converts Yes/No into clearer group labels.
+
+- `income_10k`: Household income divided by 10,000 for easier interpretation of regression slopes.
 
 ```{r q4-data}
 q4_data <- toronto |> 
@@ -386,6 +401,8 @@ which:
 
 `[hat y_2]`: Predicted transit commuting percentage for other neighborhood.
 
+The plot displays household income in CAD thousands (\$k), while the regression equations use income in units of CAD $10,000.
+
 :::
 
 ::::
@@ -417,8 +434,8 @@ tibble(
 ## Q4: Summary Table
 
 ```{r q4-table}
-q4_summary <- q4_data |> 
-  group_by(highrise_group) |> 
+q4_summary <- q4_data |>
+  group_by(highrise_group) |>
   summarize(
     n = n(),
     `Median Income (CAD)` = scales::dollar(
@@ -427,9 +444,10 @@ q4_summary <- q4_data |>
     `Median Transit (%)` = median(pct_transit_commuters),
   )
 
-q4_summary |> 
-kable(caption = "Comparison of highrise status",
-      align = "lccc")
+q4_summary |>
+  rename(`Neighbourhood Type` = highrise_group) |>
+  kable(caption = "Comparison of highrise status",
+        align = "lccc")
 ```
 
 \footnotesize
@@ -449,7 +467,7 @@ Insights for Q4:
 **Data Limitations:**
 
 - Variables come from different years, so some may have changed since.
-- Q4: Neighborhoods are divided into only two groups based on if this building is higher than 5 floors. This may hide differences between neighborhoods with different proportions of high-rise housing. For example, a 51% highrise rate neighborhood is in the same category with a 95% highrise rate neighborhood.
+- Q4: Neighbourhoods are divided into two groups based on whether more than 50% of their dwellings are in buildings with five or more storeys. This may hide differences between neighbourhoods with different proportions of high-rise housing. For example, a neighbourhood with 51% high-rise dwellings is placed in the same category as one with 95%.
 - Neighbourhood-level associations may not apply to individual dwellings or households.
 
 **Future Directions:**
