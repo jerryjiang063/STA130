@@ -4,11 +4,11 @@
 
 ## Project Introduction
 
-**Project Theme: The Hidden Costs of Living in Toronto**
+**Project Theme: How Income Shapes Life in Toronto's Neighbourhoods**
 
-This project explores relationships among neighbourhood income levels, housing characteristics, housing affordability, and public transit commuting patterns across Toronto.
+This project examines how neighbourhood income relates to renting, housing costs, housing conditions, and public transit use across Toronto, and how these relationships vary between neighbourhoods.
 
-Our group will investigate four separate research questions, then bring the findings together using median household income as a shared basis for comparing neighbourhoods.
+Our group explores four research questions, using median household income as a shared variable to connect the findings.
 
 ## Dataset
 
@@ -25,13 +25,15 @@ Our group will investigate four separate research questions, then bring the find
 
 Do Toronto neighbourhoods with lower median household incomes tend to have a higher percentage of renter households, and does this relationship differ across the city's four regions?
 
-### Q2: Rental Housing Affordability
+### Q2: Rent and Housing Cost Burden
 
-Across Toronto neighbourhoods, is a higher median monthly rent associated with a higher percentage of renter households spending at least 30% of their income on shelter costs, and does this relationship differ by the percentage of subsidized renter households?
+Are higher rent, household income, or lower share of subsidized renters associated with more renters spending 30% or more of their income in housing in the neighborhoods of Toronto.
 
-### Q3: Housing Conditions and Repair Needs
+**Follow-up:** Is the link with rent stronger in neighbourhoods with more low-income residents?
 
-Do Toronto neighbourhoods with a higher percentage of older housing tend to have a higher percentage of dwellings requiring major repairs, and does this relationship vary with the percentage of condominium housing?
+### Q3: House Age and Repair Needs
+
+How are percentages of older-housing and percentages of major-repair related across Toronto neighbourhoods, and how do these patterns vary with median household income?
 
 ### Q4: Income and Public Transit Commuting
 
