@@ -453,5 +453,6 @@ Insights for Q4:
 
 - **Renting (Q1):** Lower-income neighbourhoods tend to have more renters across Toronto. This supports our theme by highlighting the relationship between income and housing, as well as regional differences in renting patterns.
 - **Housing costs (Q2):** Although income is an important determinant of living quality, our findings suggest that choosing a neighborhood with lower median rent can reduce renter burden and improve overall quality of life.
+- **Housing condition (Q3):** Neighbourhoods with older housing tend to require more major repairs, potentially increasing residents’ expenses and compromising their living conditions. This suggests that housing quality is shaped not only by income but also by housing age.
 - **Getting to work (Q4):** Lower-income neighbourhoods tend to have higher public transit commuting rates, highlighting the importance of reliable public transit in Toronto’s lower-income communities.
 
